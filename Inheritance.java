@@ -1,4 +1,6 @@
 import java.util.LinkedList;
+//Tính kế thừa cho phép bạn tạo ra các lớp mới bằng cách sử dụng thông tin và hành vi từ các lớp đã tồn tại.
+//Tính đa hình cho phép bạn thực hiện cùng một hành động trên các đối tượng khác nhau mà không cần quan tâm đến loại đối tượng cụ thể.
 
 //Lớp trừu tượng - không thể tạo đối tượng
 abstract class animal {
@@ -7,6 +9,7 @@ abstract class animal {
     public abstract void getInfo();
 }
 
+//Lớp human kế thừa từ lớp animal
 class human extends animal {
     human (String name) {
         this.name = name;
@@ -14,8 +17,14 @@ class human extends animal {
     public void getInfo() {
         System.out.println("Name: " + name);
     }
+  
+    //final method: Phương thức không thể ghi đè từ lớp con
+    public final void display() {
+        System.out.println("This is a final method");
+    }
 }
 
+//Lớp studen kế thừa từ lớp human
 class student extends human {
     private String mssv;
     student(String name, String mssv) {
@@ -28,6 +37,7 @@ class student extends human {
     }
 }
 
+//Lớp clazz kết tập từ student
 class clazz {
     private LinkedList<student> a = new LinkedList<>();
     public void addStudent(student student) {
@@ -49,7 +59,7 @@ class clazz {
     }
 }
 
-public class Extend {
+public class Inheritance {
         public static void main(String[] args) {
             human human = new human("XXXX XXXX");
             human.getInfo();

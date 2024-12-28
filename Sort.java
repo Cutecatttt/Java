@@ -1,16 +1,29 @@
 import java.util.Scanner;
-import java.util.HashMap;
 import java.util.TreeMap;
+//Scanner(System.in): Nhập dữ liệu từ bàn phím
+//Scanner(File("file.txt")): Nhập dữ liệu từ bàn file
+//Scanner(String): Nhập dữ liệu từ chuỗi
+//scanner.next() Sẽ đọc từ một từ tiếp theo trong luồng đầu vào và sẽ bỏ qua các khoảng trắng, tab, xuống dòng trước và sau nó. Dừng lại khi gặp khoảng trắng, tab, xuống dòng.      
+//scanner.nextLine() Sẽ đọc toàn bộ dòng văn bản cho đến khi gặp dấu phân cách dòng
+//scanner.nextInt()/.nextDouble()/.nextBoolean(): Sẽ bỏ qua khoảng trắng trước đó và dừng lại khi gặp khoảng trắng. Sau khi đọc con trỏ chỉ ngay kí tự tiếp theo không phải là một phần của số nguyên.
+//Khi sử dụng nextLine() ngay sau nextInt() phải xử lý dòng trống còn lại bằng 1 lệnh scaner.nextLine() trước đó.
+//scanner.hasNext()/.hasNextLine()/hasNextInt/.hasNextDouble: Kiểm tra loại dữ liệu tiếp theo
 
 public class Sort {
     public static void main(String[] args) {
-        HashMap<Integer,Integer> map = new HashMap<>();
+        TreeMap<Integer,Integer> map = new TreeMap<>();
         System.out.print("Nhap day so: ");
         Scanner scanner = new Scanner(System.in);
         String data = scanner.nextLine();
         scanner = new Scanner(data);
+        scanner.useDelimiter("[,; ]+"); //Đặt lại các dấu ',' và ';' thành khoảng trắng
 
         while (scanner.hasNext()) {
+            //Bỏ qua dữ liệu không phải là số
+            if(!scanner.hasNextInt()) {
+                scanner.next();
+                continue;
+            }
             int key = scanner.nextInt();
             if (map.containsKey(key)) {
                 int value = map.get(key);
@@ -19,10 +32,11 @@ public class Sort {
                 map.put(key, 1);
             }
         }
+        scanner.close();
 
         TreeMap<Integer,Integer> clonedMap = new TreeMap<>();
         clonedMap.putAll(map);
-        System.out.println("a)");
+        System.out.println("Type 1:");
         int n = 0;
         for (int key : clonedMap.keySet()) {
             if(clonedMap.get(key) > n) n = clonedMap.get(key);
@@ -39,11 +53,9 @@ public class Sort {
             n--;
         }
         
-        TreeMap<Integer,Integer> clonedMapp = new TreeMap<>();
-        clonedMapp.putAll(map);
-        System.out.println("b)");
-        for (int key : clonedMapp.keySet()) {
-            for(int i = 0; i < clonedMapp.get(key); i++) {
+        System.out.println("Type 2:");
+        for (int key : map.keySet()) {
+            for(int i = 0; i < map.get(key); i++) {
                 System.out.print(key+ " ");
             }
             System.out.println();
