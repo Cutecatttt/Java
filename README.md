@@ -9,11 +9,11 @@ git remote add origin https://github.com/<tên-người-dùng>/<tên-repository>
 touch .gitignore
 
 ## Thêm nội dung vào .gitignore và thêm file vào Git
-git add .gitignore
+git add .gitignore<br>
 git commit -m "Thêm .gitignore"
 
 ## Thêm file dự án vào Git và commit
-git add .
+git add .<br>
 git commit -m "Khởi tạo dự án Java"
 
 ## Tạo nhánh main
