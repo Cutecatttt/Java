@@ -9,7 +9,7 @@ import java.util.TreeMap;
 //Khi sử dụng nextLine() ngay sau nextInt() phải xử lý dòng trống còn lại bằng 1 lệnh scaner.nextLine() trước đó.
 //scanner.hasNext()/.hasNextLine()/hasNextInt/.hasNextDouble: Kiểm tra loại dữ liệu tiếp theo
 
-public class Sort {
+public class ScannerInJava {
     public static void main(String[] args) {
         TreeMap<Integer,Integer> map = new TreeMap<>();
         System.out.print("Nhap day so: ");
@@ -18,12 +18,15 @@ public class Sort {
         scanner = new Scanner(data);
         scanner.useDelimiter("[,; ]+"); //Đặt lại các dấu ',' và ';' thành khoảng trắng
 
+        //Kiểm tra xem còn token nào tiếp theo không
         while (scanner.hasNext()) {
             //Bỏ qua dữ liệu không phải là số
             if(!scanner.hasNextInt()) {
+                //Đọc từ một từ tiếp theo trong luồng đầu vào và sẽ bỏ qua các khoảng trắng, tab, xuống dòng trước và sau nó. Dừng lại khi gặp khoảng trắng, tab, xuống dòng và đặt con trỏ tại token ngay sau các dấu phân cách.
                 scanner.next();
                 continue;
             }
+            //Đọc số nguyên và bỏ qua khoảng trắng trước đó và dừng lại khi gặp khoảng trắng. Sau khi đọc con trỏ chỉ ngay kí tự tiếp theo không phải là một phần của số nguyên.
             int key = scanner.nextInt();
             if (map.containsKey(key)) {
                 int value = map.get(key);

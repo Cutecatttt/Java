@@ -7,30 +7,19 @@ import java.util.Random;
 //private: Không thể truy cập từ bất kì lớp nào khác.
 //protected: Chỉ được truy cập từ các lớp cùng gói và tất cả các lớp con (kể cả khác gói).
 //default: Chỉ được truy cập từ các lớp trong cùng 1 gói.
-//static variable: Biến dùng cho tất cả đối tượng trong lớp có thể gọi trực tiếp mà không cần khởi tạo đối tượng. Thường được dùng để tạo các hằng số hoặc đếm số lượng các đối tượng được tạo.
-//static method: Có thể gọi trực tiếp mà không cần khởi tạo đối tượng. Không thể sự dụng các từ khoá như this và supper, không thể ghi đè.
-//static block: Được thực thi 1 lần duy nhất khi lớp được tải.
 
 class NhanVien {
     private String tenNhanVien;
     private double heSoLuong;
     private double luongCoBan = 750000;
     public final double LUONG_MAX = 20000000;
-    static int count = 0;
 
-    //Phương thức khởi tạo(Constructor)
+    //Phương thức khởi tạo(Constructor): Được gọi tự động khi một đối tượng được tạo ra
     public NhanVien(String tenNhanVien, double heSoLuong) {
-        //this. truy cập đến đối tượng hiện tại của lớp
         this.tenNhanVien = tenNhanVien;
         this.heSoLuong = heSoLuong;
-        count ++;
     }
     
-
-    static {
-        System.out.println("This static block is executed automatically when the class NhanVien is loaded");
-    }
-
     public boolean tangLuong(double heSo) {
         if ((heSoLuong + heSo) * luongCoBan < LUONG_MAX) {
             this.heSoLuong += heSo;
@@ -101,18 +90,6 @@ class PhongBan {
 public class Encapsulation {
     //JVM tự động tìm và thực thi phương thức Encapsulation.main() ngay sau khi chạy chương trình
     public static void main(String[] args) {
-        //Lớp Integer được kế thừa từ lớp Object nên đã có phương thức equals
-        Integer i1 = new Integer(47);
-        Integer i2 = new Integer(47);
-        //Toán tử == kiểm tra xem hai đối tượng có đồng nhất hay không
-        System.out.println(i1 == i2);
-        //Phương thức equals kiểm tra xem hai đối tượng có giống nhau hay không
-        System.out.println(i1.equals(i2));
-
-        NhanVien nv1 = new NhanVien("XXXX", 5);
-        NhanVien nv2 = new NhanVien("XXXX", 5);
-        //NhanVien chưa cài đặt Phương thức equals của lớp Object nên vẫn trả về false
-        System.out.println(nv1.equals(nv2));
         Random random = new Random();
         PhongBan pb = new PhongBan("HR");
         for (int i = 0; i < 10; i++) {
@@ -120,7 +97,6 @@ public class Encapsulation {
             NhanVien nv = new NhanVien(ten, 5 + Math.round(random.nextInt(50))/10.0);
             pb.themNV(nv);
         }
-        System.out.println("Number off NhanVien initialized: " + NhanVien.count); //Không cần tạo đối tượng
         pb.inTTin();
     }
 }
