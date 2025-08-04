@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.Random;
+//Tinh trừu tượng Là quá trình loại bỏ đi các thông tin ít quan trọng và giữ lại những thông tin quan trọng, có ý nghĩa.
 //Tính đóng gói là việc che giấu thông tin và hành vi bên trong đối tượng, chỉ tiết lộ những gì cần thiết và quy định cách truy cập thông qua các phương thức công khai.
-//Tính đa hinh cho phép bạn tạo ra các lớp và đối tượng trừu tượng, tập trung vào các tính năng quan trọng mà bạn quan tâm và che giấu chi tiết phức tạp bên trong.
 
 //public: Không giới hạn phạm vi truy cập.
 //private: Không thể truy cập từ bất kì lớp nào khác.
